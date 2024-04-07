@@ -1,0 +1,8 @@
+﻿#include @"main.ph"
+
+% privately used packages
+#include @"pfc\string\string.ph"
+#include @"pfc\console\console.ph"
+#include @"pfc\stream\stream.ph"
+% implementations
+#include @"main.pro"
