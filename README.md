@@ -1,3 +1,5 @@
+# Recap of lesson using Prolog with practice
+
 ## Prerequisites
 
 Install SWI Prolog
