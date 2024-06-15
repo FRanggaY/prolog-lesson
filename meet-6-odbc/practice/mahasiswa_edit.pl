@@ -10,13 +10,9 @@ disconnect_from_db :-
     odbc_disconnect(mahasiswa_db).
 
 % Menambahkan data mahasiswa ke dalam database
-add_mahasiswa_budi() :-
-    odbc_query(mahasiswa_db,
-               'INSERT INTO mahasiswa (nama, nim, jurusan) VALUES (\'Budi Santoso\', \'123456789\', \'Informatika\')').
-
-add_mahasiswa_siti() :-
-    odbc_query(mahasiswa_db,
-               'INSERT INTO mahasiswa (nama, nim, jurusan) VALUES (\'Siti Aminah\', \'987654321\', \'Sistem Informasi\')').
+add_mahasiswa(Nama, NIM, Jurusan) :-
+    format(atom(Query), 'INSERT INTO mahasiswa (nama, nim, jurusan) VALUES (\'~w\', \'~w\', \'~w\')', [Nama, NIM, Jurusan]),
+    odbc_query(mahasiswa_db, Query).
 
 % Menampilkan data mahasiswa dari database
 show_mahasiswa :-
@@ -28,8 +24,8 @@ show_mahasiswa.
 % Contoh penggunaan
 main :-
     connect_to_db,
-    add_mahasiswa_budi(),
-    add_mahasiswa_siti(),
+    add_mahasiswa('Budi Santoso', '123456789', 'Informatika'),
+    add_mahasiswa('Siti Aminah', '987654321', 'Sistem Informasi'),
     show_mahasiswa,
     disconnect_from_db.
 

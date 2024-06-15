@@ -10,14 +10,14 @@ disconnect_from_db :-
     odbc_disconnect(person_db).
 
 % Menambahkan data person ke dalam database
-add() :-
-    odbc_query(person_db,
-               'INSERT INTO person (name, age) VALUES (\'budi\', 10)').
+add(Name, Age) :-
+    format(atom(Query), 'INSERT INTO person (name, age) VALUES (\'~w\', \'~w\')', [Name, Age]),
+    odbc_query(person_db, Query).
 
 % Contoh penggunaan
 main :-
     connect_to_db,
-    add(),
+    add('Agus', 20),
     disconnect_from_db.
 
 % Jalankan main untuk menjalankan contoh
